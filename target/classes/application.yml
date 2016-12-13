@@ -1,0 +1,47 @@
+server:
+    port: 9000
+    ssl:
+      enabled: true
+      key-store: classpath:sample.jks
+      key-password: local.123
+
+management:
+    port: 8080
+    ssl:
+      enabled: false
+
+security:
+    user:
+      name: name
+      password: password
+    oauth2:
+      client:
+        client-id: id
+        client-secret: secret
+      authorization:
+        checkTokenAccess: isAuthenticated()
+
+logging.level.org.springframework.security: DEBUG
+
+spring:
+    profiles:
+      active: production
+    data:
+      mongodb:
+        # port: 27017
+        uri: mongodb://127.0.0.1:23456
+    # datasource:
+    #   platform: h2
+---
+
+spring:
+    profiles: development
+server:
+    port: 8443
+
+---
+
+spring:
+    profiles: production
+server:
+    port: 9001
